@@ -1,0 +1,14 @@
+#! /bin/bash
+
+WCFG=/ww/cfg
+WFILES=/ww/files
+
+QM=/usr/local/queuemetrics/tomcat/webapps/queuemetrics
+
+# redirect visitors from ROOT/index.jsp to /wombat/
+cp $WFILES/tomcat_index.jsp /usr/local/queuemetrics/tomcat/webapps/ROOT/index.jsp
+rm -f /usr/local/queuemetrics/tomcat/webapps/ROOT/index.html
+
+# stop mysql
+/etc/init.d/mysqld stop
+

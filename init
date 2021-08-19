@@ -1,0 +1,11 @@
+#!/bin/bash
+sleep 5
+ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+sed -i "s-Europe/Rome-$TZ-g" /ww/etc/defaults.json
+sed -i "s-128-$MEM-g" /ww/etc/defaults.json
+sed -i '/JDBC_URL/d' /data/qm/tpf.properties
+rm /usr/local/queuemetrics/webapps/queuemetrics-19.10.21-137/WEB-INF/web.xml
+ln -s /data/web.xml /usr/local/queuemetrics/webapps/queuemetrics-19.10.21-137/WEB-INF/web.xml
+sed -ci '/jdbc:mariadb/d' /data/web.xml
+sed -ci "/.*JDBC_URL.*/a \            <param-value>jdbc:mariadb:\/\/$DBHOST\/$DB?\user=$DBUSER\&amp;password=$DBPASS\&amp;sessionVariables=sql_mode=\x27\x27\&amp;autoReconnect=true<\/param-value>" /data/web.xml
+echo "JDBC_URL=jdbc:mariadb://$DBHOST/$DB?user=$DBUSER&password=$DBPASS&autoReconnect=true" >> /data/qm/tpf.properties

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <display-name>Loway QueueMetrics</display-name>
+    <description>Call-center monitoring and reporting suite for the Asterisk(tm) PBX</description>
+
+    <listener>
+        <listener-class>
+            ch.loway.app.queuemetrics.backend.QmTracker
+        </listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>
+            LowayTransactionController
+        </servlet-name>
+        <servlet-class>
+            it.loway.tpf.transaction.servlets.LowayTransactionController
+        </servlet-class>
+
+        <init-param>
+            <param-name>LICENZA_ARCHITETTURA</param-name>
+            <param-value>5231317C-42324672-65654465-6D6F2D31-392E3130-232D2D2D-2D235175-6575654D-65747269-63737C50-33313630-38323436-30303030-30307C</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>START_TRANSACTION</param-name>
+            <param-value>qm_start</param-value>
+        </init-param>
+        
+        
+        <init-param>
+            <param-name>JDBC_URL</param-name>         
+            <param-value>jdbc:mariadb://127.0.0.1/queuemetrics?user=queuemetrics&amp;password=javadude&amp;sessionVariables=sql_mode=''&amp;autoReconnect=true</param-value>
+        </init-param>
+
+	<init-param>
+            <param-name>SMTP_HOST</param-name>
+            <param-value>smtp.myhost</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>SMTP_AUTH</param-name>
+            <param-value>true</param-value>
+        </init-param>
+
+	<init-param>
+            <param-name>SMTP_USER</param-name>
+            <param-value>xxxx</param-value>
+        </init-param>
+
+        <init-param>
+            <param-name>SMTP_PASSWORD</param-name>
+            <param-value>xxxxx</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup>
+
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>LowayTransactionController</servlet-name>
+        <url-pattern>/tpf</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LowayTransactionController</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/sys_errore.jsp</location>
+    </error-page>
+    
+</web-app>
+
