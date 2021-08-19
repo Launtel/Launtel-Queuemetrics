@@ -1,0 +1,20 @@
+services:
+  qm:
+    container_name: mycontainer
+    image: 
+    hostname: mycontainer
+    network_mode: bridge
+    environment:
+    - TZ=Australia/Melbourne
+    - DB=mydb
+    - DBPASS=mydbpass
+    - DBUSER=mydbuser
+    - DBHOST=mydbhost
+    - MEM=265
+    - VIRTUAL_HOST=myvhost.name
+    - CERT_NAME=mycertificate
+    ports:
+    - "8080"
+    volumes:
+    - web.xml:/data/web.xml
+
