@@ -27,7 +27,7 @@ services:
     hostname: mycontainer
     network_mode: bridge
     environment:
-    - TZ=Australia/Melbourne
+    - TZ=Australia/Hobart
     - DB=mydb
     - DBPASS=mydbpass
     - DBUSER=mydbuser
