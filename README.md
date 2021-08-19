@@ -1,6 +1,6 @@
 # Launtel Queuemetrics
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/mtlynch/logpaste.svg?maxAge=604800)](https://hub.docker.com/r/agentsquirrel/launtel_queuemetrics)
+![Docker Pulls](https://img.shields.io/docker/pulls/agentsquirrel/launtel_queuemetrics)
 
 A build of Queuemetrics designed for use inside Launtel version pinned at: 19.10.21-137
 
@@ -21,7 +21,7 @@ Any other variables such as timezone can also be modified as needed.
 services:
   qm:
     container_name: mycontainer
-    image: https://hub.docker.com/r/agentsquirrel/launtel_queuemetrics
+    image: agentsquirrel/launtel_queuemetrics
     hostname: mycontainer
     network_mode: bridge
     environment:
